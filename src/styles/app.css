@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+}
+
+
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    
+}
+
+#workout-app-root {
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    background: white;
+}
+
+.workout-app {
+    height: 100%;
+    width: 800px;
+    padding: 1.5rem;
+}
+
+.workout-app__content {
+    overflow-y: auto;
+}
+
+.workout__list__item {
+    padding: 2rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    margin: 2rem .5rem;
+    border-radius: 4px;
+}
