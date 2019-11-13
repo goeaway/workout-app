@@ -9,6 +9,10 @@ export interface ProgramFailureRequest extends Action {
     fetchFailureReason: string;
 }
 
-export interface ProgramSuccessRequest extends Action {
+export interface ProgramsGetSuccessRequest extends Action {
     programs: Array<Program>;
+}
+
+export interface ProgramGetSuccessRequest extends Action {
+    program: Program;
 }

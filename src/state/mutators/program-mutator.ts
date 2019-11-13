@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { PROGRAM_GET, PROGRAM_SUCCESS, PROGRAM_FAILURE, ProgramSuccessRequest, ProgramFailureRequest } from "../requests/program-requests";
+import { PROGRAM_GET, PROGRAM_SUCCESS, PROGRAM_FAILURE, ProgramsGetSuccessRequest, ProgramFailureRequest } from "../requests/program-requests";
 import { ProgramMutatorState } from "../types";
 
 const DEFAULT_STATE: ProgramMutatorState = {
@@ -19,7 +19,7 @@ export default function programMutator(state: ProgramMutatorState = DEFAULT_STAT
         case PROGRAM_SUCCESS: {
             return Object.assign({}, state, {
                 isFetching: false,
-                programs: (action as ProgramSuccessRequest).programs
+                programs: (action as ProgramsGetSuccessRequest).programs
             });
         }
         case PROGRAM_FAILURE: {

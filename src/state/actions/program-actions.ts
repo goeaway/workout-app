@@ -1,4 +1,4 @@
-import { ProgramSuccessRequest, PROGRAM_GET, ProgramFailureRequest, PROGRAM_FAILURE, PROGRAM_SUCCESS } from "../requests/program-requests";
+import { ProgramsGetSuccessRequest, PROGRAM_GET, ProgramFailureRequest, PROGRAM_FAILURE, PROGRAM_SUCCESS } from "../requests/program-requests";
 import { Program, WeekType } from "../../types";
 import { Action } from "redux";
 
@@ -119,7 +119,7 @@ export function requestProgramsFailure(reason: string) : ProgramFailureRequest {
     };
 }
 
-export function requestProgramsSuccess(programs: Array<Program>) : ProgramSuccessRequest {
+export function requestProgramsSuccess(programs: Array<Program>) : ProgramsGetSuccessRequest {
     return {
         type: PROGRAM_SUCCESS,
         programs
