@@ -3,7 +3,6 @@ export interface Program {
     name: string;
     weeks: Array<Week>;
     commences: Date;
-    
 }
 
 export interface Week {
@@ -22,19 +21,23 @@ export enum WeekType {
     Deload
 }
 
-export interface Workout {
+export interface Completable {
+    complete: boolean;
+}
+
+export interface Workout extends Completable {
     id: number;
     name: string;
     exercises: Array<Exercise>;
 }
 
-export interface Exercise {
+export interface Exercise extends Completable {
     id: number;
     name: string;
     goals: Array<Goal>;
 }
 
-export interface Goal {
+export interface Goal extends Completable {
     id: number;
     weight: number;
     reps: number;

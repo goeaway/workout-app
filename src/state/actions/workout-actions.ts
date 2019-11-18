@@ -42,7 +42,31 @@ export function getWorkout(id: number) {
                 return Promise.reject();
             } else {
                 dispatch(requestWorkoutSuccess({
-                    id: 1, exercises: [], name: "my workout"
+                    id: 1, 
+                    exercises: [
+                        { 
+                            id: 1, 
+                            goals: [
+                                {
+                                    id: 1, 
+                                    reps: 5, 
+                                    weight: 90
+                                },
+                                {
+                                    id: 2, 
+                                    reps: 5, 
+                                    weight: 90
+                                },
+                                {
+                                    id: 3, 
+                                    reps: 5, 
+                                    weight: 90
+                                }
+                            ],
+                            name: "Squat"
+                        }
+                    ], 
+                    name: "my workout"
                 }));
             }
         })

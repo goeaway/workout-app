@@ -9,6 +9,7 @@ import ProgramsPage from "./pages/programs-page";
 import ProgramPage from "./pages/program-page";
 import { useSelector } from "react-redux";
 import { RunningWorkoutMutatorState } from "../state/types";
+import "../styles/colours.css";
 
 export interface AppProps {
 }
@@ -19,19 +20,19 @@ const App: React.FC<AppProps> = () => {
 
     return (
         <Router>
-            <div className="workout-app bg-red-200">
-                <div className="flex justify-between ml-6 mr-6 font-semibold">
-                    <Link className="hover:text-gray-700" to="/">Workouts</Link>
-                    <Link className="hover:text-gray-700" to="/progress">Progress</Link>
-                    <Link className="hover:text-gray-700" to="/share">Share</Link>
-                    <Link className="hover:text-gray-700" to="/calculator">Strength Calculator</Link>
+            <div className="bg-blue-200 flex flex-column w-full">
+                <div className="flex flex-col bg-white font-semibold p-2">
+                    <Link className="hover:text-gray-700 p-1" to="/">Workouts</Link>
+                    <Link className="hover:text-gray-700 p-1" to="/progress">Progress</Link>
+                    <Link className="hover:text-gray-700 p-1" to="/share">Share</Link>
+                    <Link className="hover:text-gray-700 p-1" to="/calculator">Strength Calculator</Link>
                 </div>
                 {isRunning &&
                     <div className="p-5 m-6 cursor-pointer bg-green-400 rounded-lg shadow-xl hover:bg-gray-100">
                         Currently Running {runningWorkout.name}. Click to go
                     </div>
                 }
-                <div className="h-full overflow-y-auto">
+                <div className="h-full w-full overflow-y-auto p-6">
                     <Route exact path="/" component={WorkoutsPage} />
                     <Route path="/program/:id" component={ProgramPage} />
                     <Route path="/workout/:id" component={WorkoutPage} />

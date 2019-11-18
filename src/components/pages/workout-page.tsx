@@ -14,13 +14,13 @@ const WorkoutPage : React.FC = () => {
     });
 
     React.useEffect(() => {
-        debugger;
         dispatch(getWorkout(idNum));
     }, []);
-
-    return (
+    
+    return workout && (
         <div>
-            {workout && workout.exercises.map(w => (
+            <span>{workout.name}</span>
+            {workout.exercises.map(w => (
                 <ListItem 
                     key={w.id}
                     title={w.name}

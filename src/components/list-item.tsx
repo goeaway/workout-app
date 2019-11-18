@@ -10,7 +10,7 @@ export interface ListItemProps {
 const ListItem : React.FC<ListItemProps> = ({ title, titleAlt, contentRender, onClick }) => {
     return (
         <div 
-            className="p-5 m-6 cursor-pointer bg-white rounded-lg shadow-xl hover:bg-gray-100" 
+            className="p-5 mt-6 mb-6 cursor-pointer bg-white rounded-lg shadow-xl hover:bg-gray-100" 
             onClick={onClick}
         >
             <div className="flex justify-between">
