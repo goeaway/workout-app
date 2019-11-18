@@ -7,6 +7,7 @@ export interface FetchableState {
 
 export interface WorkoutMutatorState extends FetchableState {
     workouts: Array<Workout>;
+    workout: Workout;
 }
 
 export interface ProgramMutatorState extends FetchableState {

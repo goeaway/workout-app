@@ -1,4 +1,4 @@
-import { WorkoutSuccessRequest, WorkoutFailureRequest, WORKOUT_GET, WORKOUT_FAILURE, WORKOUT_SUCCESS } from "../requests/workout-requests";
+import { WorkoutsSuccessRequest, WorkoutFailureRequest, WORKOUT_GET, WORKOUT_FAILURE, WORKOUTS_SUCCESS, WorkoutSuccessRequest, WORKOUT_SUCCESS } from "../requests/workout-requests";
 import { Workout } from "../../types";
 import { Action } from "redux";
 
@@ -23,7 +23,30 @@ export function getWorkoutsForUser(userId: number) {
                 ]));
             }
         })
-        .catch(err => dispatch(requestWorkoutsFailure(err))) 
+        .catch(err => dispatch(requestWorkoutsFailure(err)));
+    }
+}
+
+export function getWorkout(id: number) {
+    return (dispatch: Function) => {
+        dispatch(requestWorkouts());
+
+        return fetch("https://httpstat.us/200", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id })
+        })
+        .then(response => {
+            if(!response.ok) {
+                dispatch(requestWorkoutsFailure(""));
+                return Promise.reject();
+            } else {
+                dispatch(requestWorkoutSuccess({
+                    id: 1, exercises: [], name: "my workout"
+                }));
+            }
+        })
+        .catch(err => dispatch(requestWorkoutsFailure(err)));
     }
 }
 
@@ -40,9 +63,16 @@ function requestWorkoutsFailure(reason: string) : WorkoutFailureRequest {
     };
 } 
 
-function requestWorkoutsSuccess(workouts: Array<Workout>) : WorkoutSuccessRequest {
+function requestWorkoutsSuccess(workouts: Array<Workout>) : WorkoutsSuccessRequest {
+    return {
+        type: WORKOUTS_SUCCESS,
+        workouts
+    };
+}
+
+function requestWorkoutSuccess(workout: Workout) : WorkoutSuccessRequest {
     return {
         type: WORKOUT_SUCCESS,
-        workouts
+        workout
     };
 }

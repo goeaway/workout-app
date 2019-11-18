@@ -1,11 +1,12 @@
 import { Action } from "redux";
-import { WORKOUT_GET, WORKOUT_SUCCESS, WORKOUT_FAILURE, WorkoutSuccessRequest, WorkoutFailureRequest } from "../requests/workout-requests";
+import { WORKOUT_GET, WORKOUTS_SUCCESS, WORKOUT_FAILURE, WorkoutsSuccessRequest, WorkoutFailureRequest, WorkoutSuccessRequest, WORKOUT_SUCCESS } from "../requests/workout-requests";
 import { WorkoutMutatorState } from "../types";
 
 const DEFAULT_STATE : WorkoutMutatorState = {
     isFetching: false,
     workouts: [], 
-    fetchFailureReason: null
+    fetchFailureReason: null,
+    workout: null
 }
 
 export default function workoutMutator(state: WorkoutMutatorState = DEFAULT_STATE, action: Action) {
@@ -16,10 +17,16 @@ export default function workoutMutator(state: WorkoutMutatorState = DEFAULT_STAT
                 fetchFailureReason: null
             });
         }
+        case WORKOUTS_SUCCESS: {
+            return Object.assign({}, state, {
+                isFetching: false,
+                workouts: (action as WorkoutsSuccessRequest).workouts
+            });
+        }
         case WORKOUT_SUCCESS: {
             return Object.assign({}, state, {
                 isFetching: false,
-                workouts: (action as WorkoutSuccessRequest).workouts
+                workout: (action as WorkoutSuccessRequest).workout
             });
         }
         case WORKOUT_FAILURE: {

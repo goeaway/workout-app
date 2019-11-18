@@ -106,6 +106,14 @@ export function getProgramsForUser(userId: number) {
     };
 }
 
+export function getProgram(id: number) {
+    return async (dispatch: Function) => {
+        dispatch();
+
+        
+    }
+}
+
 export function requestPrograms() : Action {
     return {
         type: PROGRAM_GET

@@ -21,7 +21,7 @@ const App: React.FC<AppProps> = () => {
         <Router>
             <div className="workout-app bg-red-200">
                 <div className="flex justify-between ml-6 mr-6 font-semibold">
-                    <Link className="hover:text-gray-700" to="/">Programs</Link>
+                    <Link className="hover:text-gray-700" to="/">Workouts</Link>
                     <Link className="hover:text-gray-700" to="/progress">Progress</Link>
                     <Link className="hover:text-gray-700" to="/share">Share</Link>
                     <Link className="hover:text-gray-700" to="/calculator">Strength Calculator</Link>
@@ -32,7 +32,7 @@ const App: React.FC<AppProps> = () => {
                     </div>
                 }
                 <div className="h-full overflow-y-auto">
-                    <Route exact path="/" component={ProgramsPage} />
+                    <Route exact path="/" component={WorkoutsPage} />
                     <Route path="/program/:id" component={ProgramPage} />
                     <Route path="/workout/:id" component={WorkoutPage} />
                     <Route path="/workouts" component={WorkoutsPage} />

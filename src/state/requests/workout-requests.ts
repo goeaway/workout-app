@@ -2,6 +2,7 @@ import { Workout } from "../../types";
 import { Action } from "redux";
 
 export const WORKOUT_GET = "WORKOUT_GET";
+export const WORKOUTS_SUCCESS = "WORKOUTS_SUCCESS";
 export const WORKOUT_SUCCESS = "WORKOUT_SUCCESS";
 export const WORKOUT_FAILURE = "WORKOUT_FAILURE";
 export const WORKOUT_START = "WORKOUT_START";
@@ -11,8 +12,12 @@ export interface WorkoutFailureRequest extends Action {
     fetchFailureReason: string;
 }
 
-export interface WorkoutSuccessRequest extends Action {
+export interface WorkoutsSuccessRequest extends Action {
     workouts: Array<Workout>;
+}
+
+export interface WorkoutSuccessRequest extends Action {
+    workout: Workout;
 }
 
 export interface WorkoutStartRequest extends Action {
