@@ -4,32 +4,55 @@ import { useSelector, useDispatch } from "react-redux";
 import { WorkoutMutatorState } from "../../state/types";
 import { getWorkout } from "../../state/actions/workout-actions";
 import ListItem from "../list-item";
+import CompletableGoal from "../completable-goal";
 
 const WorkoutPage : React.FC = () => {
     const { id } = useParams();
     const idNum = id as unknown as number;
     const dispatch = useDispatch();
-    const workout = useSelector((state: { workoutMutator: WorkoutMutatorState }) => {
-        return state.workoutMutator.workout;
-    });
+    const workout = useSelector(
+        (state: { workoutMutator: WorkoutMutatorState }) => (
+            state.workoutMutator.workout
+        ));
+    const [editing, setEditing] = React.useState(true);
 
     React.useEffect(() => {
         dispatch(getWorkout(idNum));
     }, []);
-    
+
+    const goalDoubleClickHandler = (complete: boolean) => {
+        if(editing) {
+            setEditing(false);
+        }
+    }
+
+    const playClickHandler = () => {
+        setEditing(!editing);
+    }
+
     return workout && (
         <div>
-            <span>{workout.name}</span>
+            <div className="flex flex-row justify-between">
+                <span>{workout.name}</span>
+                <span>
+                    <button onClick={playClickHandler}>{editing ? "EDITING": "PLAYING"}</button>
+                </span>
+            </div>
             {workout.exercises.map(w => (
                 <ListItem 
                     key={w.id}
                     title={w.name}
                     contentRender={() => (
-                        <ul>
+                        <div className="flex flex-row">
                             {w.goals.map(g => (
-                                <li key={g.id}>{g.reps} @ {g.weight}</li>
+                                <CompletableGoal 
+                                    key={g.id} 
+                                    goal={g} 
+                                    completable={!editing}
+                                    onDoubleClick={goalDoubleClickHandler}
+                                />
                             ))}
-                        </ul>
+                        </div>
                     )}
                 />
             ))}

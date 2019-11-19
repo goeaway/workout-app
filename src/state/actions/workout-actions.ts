@@ -17,9 +17,9 @@ export function getWorkoutsForUser(userId: number) {
                 return Promise.reject();
             } else {
                 dispatch(requestWorkoutsSuccess([
-                    { id: 1, name: "Monday", exercises: [{id: 1, name: "Squat", goals: []}, {id: 2, name: "Bench", goals: []}, {id: 3, name: "Deadlift", goals: []}]},
-                    { id: 2, name: "Wednesday", exercises: [{id: 1, name: "Squat", goals: []}, {id: 2, name: "Bench", goals: []}, {id: 3, name: "Deadlift", goals: []}]},
-                    { id: 3, name: "Friday", exercises: [{id: 1, name: "Squat", goals: []}, {id: 2, name: "Bench", goals: []}, {id: 3, name: "Deadlift", goals: []}]}
+                    { id: 1, name: "Monday", complete: false, exercises: [{id: 1, name: "Squat",complete: false, goals: []}, {id: 2, name: "Bench",complete: false, goals: []}, {id: 3, name: "Deadlift",complete: false, goals: []}]},
+                    { id: 2, name: "Wednesday", complete: false, exercises: [{id: 1, name: "Squat",complete: false, goals: []}, {id: 2, name: "Bench",complete: false, goals: []}, {id: 3, name: "Deadlift",complete: false, goals: []}]},
+                    { id: 3, name: "Friday", complete: false, exercises: [{id: 1, name: "Squat", complete: false, goals: []}, {id: 2, name: "Bench",complete: false, goals: []}, {id: 3, name: "Deadlift",complete: false, goals: []}]}
                 ]));
             }
         })
@@ -28,7 +28,7 @@ export function getWorkoutsForUser(userId: number) {
 }
 
 export function getWorkout(id: number) {
-    return (dispatch: Function) => {
+    return async (dispatch: Function) => {
         dispatch(requestWorkouts());
 
         return fetch("https://httpstat.us/200", {
@@ -43,26 +43,31 @@ export function getWorkout(id: number) {
             } else {
                 dispatch(requestWorkoutSuccess({
                     id: 1, 
+                    complete: false,
                     exercises: [
                         { 
                             id: 1, 
                             goals: [
                                 {
                                     id: 1, 
+                                    complete: false,
                                     reps: 5, 
                                     weight: 90
                                 },
                                 {
                                     id: 2, 
+                                    complete: false,
                                     reps: 5, 
                                     weight: 90
                                 },
                                 {
                                     id: 3, 
+                                    complete: false,
                                     reps: 5, 
                                     weight: 90
                                 }
                             ],
+                            complete: false,
                             name: "Squat"
                         }
                     ], 

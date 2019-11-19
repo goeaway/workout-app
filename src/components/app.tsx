@@ -20,7 +20,7 @@ const App: React.FC<AppProps> = () => {
 
     return (
         <Router>
-            <div className="bg-blue-200 flex flex-column w-full">
+            <div className="bg-blue-200 flex w-full">
                 <div className="flex flex-col bg-white font-semibold p-2">
                     <Link className="hover:text-gray-700 p-1" to="/">Workouts</Link>
                     <Link className="hover:text-gray-700 p-1" to="/progress">Progress</Link>

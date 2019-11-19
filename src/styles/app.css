@@ -38,3 +38,12 @@ html, body {
     margin: 2rem .5rem;
     border-radius: 4px;
 }
+
+.goal {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}

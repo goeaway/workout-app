@@ -29,16 +29,19 @@ export function getProgramsForUser(userId: number) {
                                     {
                                         id: 10, 
                                         name: "Monday",
+                                        complete: false,
                                         exercises: []
                                     },
                                     {
                                         id: 9, 
                                         name: "Wednesday",
+                                        complete: false,
                                         exercises: []
                                     },
                                     {
                                         id: 8, 
                                         name: "Friday",
+                                        complete: false,
                                         exercises: []
                                     }
                                 ]
@@ -59,16 +62,19 @@ export function getProgramsForUser(userId: number) {
                                     {
                                         id: 1, 
                                         name: "Monday",
+                                        complete: false,
                                         exercises: []
                                     },
                                     {
                                         id: 2, 
                                         name: "Wednesday",
+                                        complete: false,
                                         exercises: []
                                     },
                                     {
                                         id: 3, 
                                         name: "Friday",
+                                        complete: false,
                                         exercises: []
                                     }
                                 ]
@@ -82,16 +88,19 @@ export function getProgramsForUser(userId: number) {
                                     {
                                         id: 4, 
                                         name: "Monday",
+                                        complete: false,
                                         exercises: []
                                     },
                                     {
                                         id: 5, 
                                         name: "Wednesday",
+                                        complete: false,
                                         exercises: []
                                     },
                                     {
                                         id: 6, 
                                         name: "Friday",
+                                        complete: false,
                                         exercises: []
                                     }
                                 ]
