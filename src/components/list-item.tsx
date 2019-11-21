@@ -4,13 +4,14 @@ export interface ListItemProps {
     title: string;
     titleAlt?: string;
     onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    clickable?: boolean;
     contentRender: Function;
 }
 
-const ListItem : React.FC<ListItemProps> = ({ title, titleAlt, contentRender, onClick }) => {
+const ListItem : React.FC<ListItemProps> = ({ title, titleAlt, contentRender, onClick, clickable }) => {
     return (
         <div 
-            className="p-5 mt-6 mb-6 cursor-pointer bg-white rounded-lg shadow-xl hover:bg-gray-100" 
+            className={`p-5 mt-6 mb-6 cursor-pointer bg-white rounded-lg shadow-xl ${clickable && "hover:bg-gray-100"}`} 
             onClick={onClick}
         >
             <div className="flex justify-between">

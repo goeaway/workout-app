@@ -6,9 +6,10 @@ export interface CompletableGoalProps {
     goal: Goal;
     completable: boolean;
     onDoubleClick: (complete: boolean) => void;
+    onComplete: (id: number) => void;
 }
 
-const CompletableGoal : React.FC<CompletableGoalProps> = ({ goal, completable, onDoubleClick }) => {
+const CompletableGoal : React.FC<CompletableGoalProps> = ({ goal, completable, onDoubleClick, onComplete }) => {
     const [complete, setComplete] = React.useState(goal.complete);
 
     React.useEffect(() => {
@@ -20,6 +21,9 @@ const CompletableGoal : React.FC<CompletableGoalProps> = ({ goal, completable, o
     const handleClick = () => {
         if(completable) {
             setComplete(!complete);
+            onComplete(goal.id);
+        } else {
+            // todo add callback so workout page can open modal to edit
         }
     }
 
@@ -37,7 +41,7 @@ const CompletableGoal : React.FC<CompletableGoalProps> = ({ goal, completable, o
             .AppendIfElse("bg-red-300", "bg-blue-300", complete)
             .Build()
     };
-debugger;
+
     return (
         <div className={classes.goal} onClick={handleClick} onDoubleClick={handleDoubleClick}>
             <span>{goal.reps}</span>
