@@ -12,9 +12,14 @@ export interface CompletableExerciseProps {
 
 const CompletableExercise : React.FC<CompletableExerciseProps> = ({ exercise, editing, onGoalDoubleClick }) => {
     const [complete, setComplete] = React.useState(false);
+    const [completeGoals, setComplleteGoals] = React.useState([] as Array<number>);
 
-    const goalCompleteHandler = (id: number) => {
+    const goalCompletionChangedHandler = (id: number, complete: boolean) => {
+        const isIn = completeGoals.includes(id);
 
+        if(isIn && !complete){
+            
+        }
     }
 
     return (
@@ -28,7 +33,7 @@ const CompletableExercise : React.FC<CompletableExerciseProps> = ({ exercise, ed
                             key={g.id} 
                             goal={g} 
                             completable={!editing}
-                            onComplete={goalCompleteHandler}
+                            onCompletionChanged={goalCompletionChangedHandler}
                             onDoubleClick={onGoalDoubleClick}
                         />
                     ))}
