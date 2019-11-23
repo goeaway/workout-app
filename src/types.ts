@@ -1,12 +1,18 @@
-export interface Program {
-    id: number;
+export interface Completable {
+    complete: boolean;
+}
+
+export interface Identifiable {
+    id: string
+}
+
+export interface Program extends Identifiable {
     name: string;
     weeks: Array<Week>;
     commences: Date;
 }
 
-export interface Week {
-    id: number;
+export interface Week extends Identifiable {
     type: WeekType;
     workouts: Array<Workout>;
     commences: Date;
@@ -21,24 +27,17 @@ export enum WeekType {
     Deload
 }
 
-export interface Completable {
-    complete: boolean;
-}
-
-export interface Workout extends Completable {
-    id: number;
+export interface Workout extends Completable, Identifiable {
     name: string;
     exercises: Array<Exercise>;
 }
 
-export interface Exercise extends Completable {
-    id: number;
+export interface Exercise extends Completable, Identifiable {
     name: string;
     goals: Array<Goal>;
 }
 
-export interface Goal extends Completable {
-    id: number;
+export interface Goal extends Completable, Identifiable {
     weight: number;
     reps: number;
 }

@@ -6,15 +6,15 @@ import CompletableGoal from "./completable-goal";
 export interface CompletableExerciseProps {
     exercise: Exercise;
     editing: boolean;
-    onComplete: (id: number) => void;
+    onComplete: (id: string) => void;
     onGoalDoubleClick: (complete: boolean) => void;
 }
 
 const CompletableExercise : React.FC<CompletableExerciseProps> = ({ exercise, editing, onGoalDoubleClick }) => {
     const [complete, setComplete] = React.useState(false);
-    const [completeGoals, setComplleteGoals] = React.useState([] as Array<number>);
+    const [completeGoals, setComplleteGoals] = React.useState([] as Array<string>);
 
-    const goalCompletionChangedHandler = (id: number, complete: boolean) => {
+    const goalCompletionChangedHandler = (id: string, complete: boolean) => {
         const isIn = completeGoals.includes(id);
 
         if(isIn && !complete){

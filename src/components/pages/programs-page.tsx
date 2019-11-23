@@ -24,7 +24,7 @@ const ProgramsPage: React.FC = () => {
         dispatch(getProgramsForUser(1));
     }, []);
 
-    const itemClickHandler = (id: number) => {
+    const itemClickHandler = (id: string) => {
         history.push(`/program/${id}`);
     }
 

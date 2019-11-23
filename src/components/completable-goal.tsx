@@ -6,7 +6,7 @@ export interface CompletableGoalProps {
     goal: Goal;
     completable: boolean;
     onDoubleClick: (complete: boolean) => void;
-    onCompletionChanged: (id: number, complete: boolean) => void;
+    onCompletionChanged: (id: string, complete: boolean) => void;
 }
 
 const CompletableGoal : React.FC<CompletableGoalProps> = ({ goal, completable, onDoubleClick, onCompletionChanged }) => {

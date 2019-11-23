@@ -12,17 +12,17 @@ const WorkoutsPage: React.FC = () => {
     const history = useHistory();
 
     React.useEffect(() => {
-        dispatch(getWorkoutsForUser(1));
+        dispatch(getWorkoutsForUser("value"));
     }, []);
 
-    const itemClickHandler = (id: number) => {
+    const itemClickHandler = (id: string) => {
         history.push(`/workout/${id}`);
     }
-
+debugger;
     return (
         <div>
             {isFetching && <div>Loading...</div>}
-            {workouts.map(w => (
+            {workouts && workouts.map(w => (
                 <ListItem 
                     title={w.name}
                     key={w.id}

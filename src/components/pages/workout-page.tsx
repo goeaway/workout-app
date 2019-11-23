@@ -9,7 +9,6 @@ import CompletableExercise from "../completable-exercise";
 
 const WorkoutPage : React.FC = () => {
     const { id } = useParams();
-    const idNum = id as unknown as number;
     const dispatch = useDispatch();
     const workout = useSelector(
         (state: { workoutMutator: WorkoutMutatorState }) => (
@@ -19,7 +18,7 @@ const WorkoutPage : React.FC = () => {
     const [editing, setEditing] = React.useState(true);
 
     React.useEffect(() => {
-        dispatch(getWorkout(idNum));
+        dispatch(getWorkout(id));
     }, []);
 
     const goalDoubleClickHandler = (complete: boolean) => {
@@ -32,7 +31,7 @@ const WorkoutPage : React.FC = () => {
         setEditing(!editing);
     }
 
-    const exerciseCompleteHandler = (id: number) => {
+    const exerciseCompleteHandler = (id: string) => {
 
     }
 

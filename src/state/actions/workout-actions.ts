@@ -2,80 +2,45 @@ import { WorkoutsSuccessRequest, WorkoutFailureRequest, WORKOUT_GET, WORKOUT_FAI
 import { Workout } from "../../types";
 import { Action } from "redux";
 
-export function getWorkoutsForUser(userId: number) {
+export function getWorkoutsForUser(userId: string) {
     return async (dispatch: Function) => {
         dispatch(requestWorkouts());
 
-        return fetch("https://httpstat.us/200", {
-            method: "POST",
-            headers: { 'Content-Type': "application/json"},
-            body: JSON.stringify({userId})
-        })
-        .then(response => {
+        try {
+            const response = await fetch(`https://localhost:44341/api/workout/getworkoutsforuser/${userId}`);
+    
             if(!response.ok) {
-                dispatch(requestWorkoutsFailure(""));
-                return Promise.reject();
-            } else {
-                dispatch(requestWorkoutsSuccess([
-                    { id: 1, name: "Monday", complete: false, exercises: [{id: 1, name: "Squat",complete: false, goals: []}, {id: 2, name: "Bench",complete: false, goals: []}, {id: 3, name: "Deadlift",complete: false, goals: []}]},
-                    { id: 2, name: "Wednesday", complete: false, exercises: [{id: 1, name: "Squat",complete: false, goals: []}, {id: 2, name: "Bench",complete: false, goals: []}, {id: 3, name: "Deadlift",complete: false, goals: []}]},
-                    { id: 3, name: "Friday", complete: false, exercises: [{id: 1, name: "Squat", complete: false, goals: []}, {id: 2, name: "Bench",complete: false, goals: []}, {id: 3, name: "Deadlift",complete: false, goals: []}]}
-                ]));
+                dispatch(requestWorkoutsFailure(response.statusText));
             }
-        })
-        .catch(err => dispatch(requestWorkoutsFailure(err)));
+    
+            const workouts: Array<Workout> = await response.json();
+            dispatch(requestWorkoutsSuccess(workouts));
+        }
+        catch (err) {
+            dispatch(requestWorkoutsFailure(err));            
+        }
     }
 }
 
-export function getWorkout(id: number) {
+export function getWorkout(id: string) {
     return async (dispatch: Function) => {
         dispatch(requestWorkouts());
 
-        return fetch("https://httpstat.us/200", {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id })
-        })
-        .then(response => {
+        try {
+            const response = await fetch(`https://localhost:44341/api/workout/getworkout/${id}`);
+    
             if(!response.ok) {
-                dispatch(requestWorkoutsFailure(""));
-                return Promise.reject();
-            } else {
-                dispatch(requestWorkoutSuccess({
-                    id: 1, 
-                    complete: false,
-                    exercises: [
-                        { 
-                            id: 1, 
-                            goals: [
-                                {
-                                    id: 1, 
-                                    complete: false,
-                                    reps: 5, 
-                                    weight: 90
-                                },
-                                {
-                                    id: 2, 
-                                    complete: false,
-                                    reps: 5, 
-                                    weight: 90
-                                },
-                                {
-                                    id: 3, 
-                                    complete: false,
-                                    reps: 5, 
-                                    weight: 90
-                                }
-                            ],
-                            complete: false,
-                            name: "Squat"
-                        }
-                    ], 
-                    name: "my workout"
-                }));
+                dispatch(requestWorkoutsFailure(response.statusText));
             }
-        })
-        .catch(err => dispatch(requestWorkoutsFailure(err)));
+    
+            const workout: Workout = await response.json();
+            dispatch(requestWorkoutSuccess(workout));
+        }
+        catch (err) {
+            dispatch(requestWorkoutsFailure(err));
+        }
+
+
     }
 }
 

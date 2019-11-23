@@ -11,7 +11,7 @@ const ProgramPage : React.FC = () => {
     const dispatch = useDispatch();
     const program = useSelector(
         (state: { programMutator: ProgramMutatorState }) => (
-            state.programMutator.programs.find(p => p.id === id as unknown as number)
+            state.programMutator.programs.find(p => p.id === id)
         ));
 
     React.useEffect(() => {
