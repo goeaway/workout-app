@@ -10,6 +10,7 @@ import ProgramPage from "./pages/program-page";
 import { useSelector } from "react-redux";
 import { RunningWorkoutMutatorState } from "../state/types";
 import "../styles/colours.css";
+import ExercisePage from "./pages/exercise-page";
 
 export interface AppProps {
 }
@@ -36,6 +37,7 @@ const App: React.FC<AppProps> = () => {
                     <Route exact path="/" component={WorkoutsPage} />
                     <Route path="/program/:id" component={ProgramPage} />
                     <Route path="/workout/:id" component={WorkoutPage} />
+                    <Route path="/exercise/:id" component={ExercisePage} />
                     <Route path="/workouts" component={WorkoutsPage} />
                     <Route path="/progress" component={ProgressPage} />
                     <Route path="/share" component={SharePage} />

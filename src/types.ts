@@ -1,5 +1,5 @@
 export interface Completable {
-    complete: boolean;
+    completionLevel: CompletionLevel;
 }
 
 export interface Identifiable {
@@ -40,4 +40,11 @@ export interface Exercise extends Completable, Identifiable {
 export interface Goal extends Completable, Identifiable {
     weight: number;
     reps: number;
+}
+
+export enum CompletionLevel {
+    InComplete,
+    Failed,
+    Missed,
+    Complete
 }
