@@ -18,10 +18,11 @@ const WorkoutsPage: React.FC = () => {
     const itemClickHandler = (id: string) => {
         history.push(`/workout/${id}`);
     }
-debugger;
+
     return (
         <div>
             {isFetching && <div>Loading...</div>}
+            <button type="button">Create</button>
             {workouts && workouts.map(w => (
                 <ListItem 
                     title={w.name}

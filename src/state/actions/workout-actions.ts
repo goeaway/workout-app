@@ -11,10 +11,10 @@ export function getWorkoutsForUser(userId: string) {
     
             if(!response.ok) {
                 dispatch(requestWorkoutsFailure(response.statusText));
+            } else {
+                const workouts: Array<Workout> = await response.json();
+                dispatch(requestWorkoutsSuccess(workouts));
             }
-    
-            const workouts: Array<Workout> = await response.json();
-            dispatch(requestWorkoutsSuccess(workouts));
         }
         catch (err) {
             dispatch(requestWorkoutsFailure(err));            
@@ -31,16 +31,14 @@ export function getWorkout(id: string) {
     
             if(!response.ok) {
                 dispatch(requestWorkoutsFailure(response.statusText));
+            } else {
+                const workout: Workout = await response.json();
+                dispatch(requestWorkoutSuccess(workout));
             }
-    
-            const workout: Workout = await response.json();
-            dispatch(requestWorkoutSuccess(workout));
         }
         catch (err) {
             dispatch(requestWorkoutsFailure(err));
         }
-
-
     }
 }
 
